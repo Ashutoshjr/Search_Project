@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-fetch-data',
@@ -11,9 +12,15 @@ export class FetchDataComponent {
 
   searchDataResult: DataFile | undefined;
 
+  temp: string | undefined;
+
   searchData: string | undefined
 
   buildings: Buildings[] = []
+  locks : Locks[] =[]
+  _http: any;
+
+  _baseUrl: string | undefined;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string)
   {
@@ -26,8 +33,8 @@ export class FetchDataComponent {
 
     //},
     //  error => console.error(error));
-
-
+    this._baseUrl = baseUrl;
+    this._http = http;
     http.get<DataFile>(baseUrl + 'weatherforecast').subscribe(result =>
     {
       this.searchDataResult = result;
@@ -39,12 +46,28 @@ export class FetchDataComponent {
 
   }
 
- 
 
 
-  onSubmit(form:NgForm) {
 
-    this.searchData = form.value;
+  onSubmit(form: NgForm)
+  {
+
+    this.searchData = form.value.searchName;
+
+    this._http.get(this._baseUrl + 'weatherforecast/'+ this.searchData).subscribe((result: any) => {
+
+
+      this.searchDataResult = result;
+
+      console.log(result)
+
+     
+      this.buildings = result.buildings;
+
+      this.locks = result.locks;
+
+    });
+   // this.http.post<any>(baseUrl + 'weatherforecast', this.searchData).subscribe((data: any) => { });
 
   }
 
@@ -74,6 +97,7 @@ interface Buildings {
   shortCut: string;
   name: string;
   description: string;
+  weight: string;
 }
 
 interface Groups {
@@ -92,7 +116,8 @@ interface Locks {
   serialNumber: string;
   floor: string;
   roomNumber: string;
-
+  weight: string;
+  building_wt : number
 }
 
 

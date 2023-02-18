@@ -34,19 +34,27 @@ namespace Search_Project.Controllers
         public void LoadJsonData()
         {
 
-           
-
             searchManager.LoadJsonData();
         }
 
 
-        [HttpGet]
-
-        public async Task<DataFile> Get()
+        [HttpGet("{data}")]
+        public async Task<DataFile> Get(string data)
         {
 
-          return await searchManager.GetJsonData();
+          return await searchManager.GetJsonData(data);
 
+        }
+
+
+        [HttpPost]
+        [Route("SearchData")]
+        public void PostEmaployee(string search)
+        {
+
+           
+
+            
         }
 
 
@@ -63,4 +71,7 @@ namespace Search_Project.Controllers
         //    .ToArray();
         //}
     }
+
+
+
 }
