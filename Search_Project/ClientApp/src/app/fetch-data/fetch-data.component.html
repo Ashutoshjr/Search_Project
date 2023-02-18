@@ -1,4 +1,4 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1 id="tableLabel">Search Page</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
@@ -15,32 +15,64 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
   <hr />
+
 </form>
+
+
 <div>
 
-  <!--<ul >
-    <ul *ngFor="let forecast of forecasts" ></ul>
-  </ul>-->
+
+
 
 </div>
-<!--<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">-->
 
+<h3>Building</h3>
+<table class='table table-striped' aria-labelledby="tableLabel">
 
-  
-  <!--<thead>
+  <thead>
     <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
+      <th>shortCut</th>
+      <th>name</th>
+      <th>description</th>
+      <th>Weight</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let building of buildings">
+      <td>{{ building.shortCut }}</td>
+      <td>{{ building.name }}</td>
+      <td>{{ building.description }}</td>
+      <td>{{ building.weight}}</td>
+
     </tr>
-  </tbody>-->
-<!--</table>-->
+  </tbody>
+</table>
+
+<hr />
+<h3>Locks</h3>
+<table class='table table-striped' aria-labelledby="tableLabel">
+
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>SerialNumber</th>
+      <th>Floor</th>
+      <th>RoomNumber</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lockkey of locks">
+      <td>{{ lockkey.type }}</td>
+      <td>{{ lockkey.name }}</td>
+      <td>{{ lockkey.description }}</td>
+      <td>{{ lockkey.serialNumber}}</td>
+      <td>{{ lockkey.floor }}</td>
+      <td>{{ lockkey.roomNumber}}</td>
+      <td>{{ lockkey.weight}}</td>
+
+    </tr>
+  </tbody>
+</table>
